@@ -12,10 +12,24 @@ namespace CA1_LucianoGimenez_23643.Models
         public string lastName { get; set; }
         public string eMail { get; set; }
 
+        public List<BankAccount> accounts = new List<BankAccount>();
 
+        public Customer(string _firstName, string _lastName, string _eMail)
+        {
+            firstName = _firstName;
+            lastName = _lastName;
+            eMail = _eMail;
+            
+
+        }
+
+        public void addBankAccount(BankAccount account)
+        {
+            accounts.Add(account);
+        }
 
     
-        public static void LogIn()
+        public void LogIn()
         {
             bool flag = true;
             Console.WriteLine("Hello");
@@ -42,9 +56,20 @@ namespace CA1_LucianoGimenez_23643.Models
             } while (flag == true);
         }
 
-        public void ShowHistory(string account)
-        { 
-        
+        public void ShowHistory(BankAccount account)
+        {
+            FileManaging.ReadFile(account.NameOfAccount() + ".txt");
+        }
+
+        public List<string> customerInfo()
+        {
+            List<string> customerInfoList = new List<string>();
+            customerInfoList.Add(firstName);
+            customerInfoList.Add(lastName);
+            customerInfoList.Add(eMail);
+            foreach
+
+            return customerInfoList;
         }
 
     }

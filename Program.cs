@@ -8,10 +8,15 @@ namespace CA1_LucianoGimenez_23643
     {
         static void Main(string[] args)
         {
+            //test
+            BankAccount b1 = new BankAccount ("John", "Smith", "current", 50);
+            BankAccount b2 = new BankAccount("John", "Smith", "savings", 50);
+            Customer c1 = new Customer("John", "Smith", "JhonSmith@gmail.com");
+            c1.addBankAccount(b1);
+            c1.addBankAccount(b2);
+            FileManaging.WriteFile("Customers.txt", c1.customerInfo);
 
-            
-
-            //Console.WriteLine(FileManaging.NameOfAccount(f, l, "current")); 
+       
 
             Console.WriteLine("Welcome are you a customer or an employee?");
             bool flag = true;
