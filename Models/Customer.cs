@@ -12,6 +12,8 @@ namespace CA1_LucianoGimenez_23643.Models
         public string lastName { get; set; }
         public string eMail { get; set; }
 
+        public string accountNumber { get; set; }
+
         public List<BankAccount> accounts = new List<BankAccount>();
 
         public Customer(string _firstName, string _lastName, string _eMail)
@@ -19,7 +21,7 @@ namespace CA1_LucianoGimenez_23643.Models
             firstName = _firstName;
             lastName = _lastName;
             eMail = _eMail;
-            
+           
 
         }
 
@@ -44,14 +46,14 @@ namespace CA1_LucianoGimenez_23643.Models
 
                 
                 //correct that (check what C# gives you when the file is not there
-                if (pin.Equals(BankAccount.NameOfAccount(fName, lName, "current").ToCharArray()))
-                {
-                    Console.WriteLine($"Welcome {fName} {lName}");
-                }
-                else
-                {
-                    Console.WriteLine("Your data is not correct please try again");
-                }
+                //if (pin.Equals(BankAccount.NameOfAccount(fName, lName, "current").ToCharArray()))
+             //   {
+              //      Console.WriteLine($"Welcome {fName} {lName}");
+            //    }
+           //     else
+             //   {
+              //      Console.WriteLine("Your data is not correct please try again");
+             //   }
 
             } while (flag == true);
         }
@@ -61,15 +63,10 @@ namespace CA1_LucianoGimenez_23643.Models
             FileManaging.ReadFile(account.NameOfAccount() + ".txt");
         }
 
-        public List<string> customerInfo()
+        public string customerInfo()
         {
-            List<string> customerInfoList = new List<string>();
-            customerInfoList.Add(firstName);
-            customerInfoList.Add(lastName);
-            customerInfoList.Add(eMail);
-            foreach
-
-            return customerInfoList;
+            string customerInfoString = firstName + " : " + lastName + " : " + eMail + " : " + accounts[0].NameOfAccount();
+            return customerInfoString;
         }
 
     }

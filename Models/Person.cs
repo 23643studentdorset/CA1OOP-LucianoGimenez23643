@@ -9,11 +9,11 @@ namespace CA1_LucianoGimenez_23643.Models
     
     public abstract class Person
     {
-        public void Lodge (double amount, string account)
+        public void Lodge (double amount, BankAccount account)
         {
            
         }
-        public void Withdraw(double amount, string account)
+        public void Withdraw(double amount, BankAccount account)
         {
 
         }

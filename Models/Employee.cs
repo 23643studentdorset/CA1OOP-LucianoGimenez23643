@@ -8,19 +8,28 @@ namespace CA1_LucianoGimenez_23643.Models
 {
     public class Employee : Person
     {
-        public static void LogIn()
+        public static bool LogIn()
         {
-
-            Console.WriteLine("Please enter your pin");
-            string pin = Console.ReadLine(); 
-            if (pin.Equals ("A1234"))
+            bool flag = true;
+            do
             {
-                Console.WriteLine("Hello");
-            }
-            else
-            {
-                Console.WriteLine("Pin incorrect");
-            } 
+                Console.WriteLine("Please enter your pin or 9 to go back");
+                string pin = Console.ReadLine();
+                if (pin.Equals("A1234"))
+                {
+                    Console.WriteLine("Hello");
+                    flag = false;
+                }
+                else if (pin.Equals("9"))
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Pin incorrect");
+                }
+            } while (flag == true);
+            return true;
         }
 
        

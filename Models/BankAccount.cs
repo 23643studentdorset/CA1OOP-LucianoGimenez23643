@@ -13,6 +13,8 @@ namespace CA1_LucianoGimenez_23643.Models
         public string type { get; set; }
         public int balance { get; set; }
         public string accountName { get; set; }
+        
+        public List<string> TransacctionHistory = new List<string>();
 
         public BankAccount(string _ownerFirstName, string _ownerLastName, string _type, int _balance)
         {
@@ -52,7 +54,18 @@ namespace CA1_LucianoGimenez_23643.Models
             return accountName;
         }
 
-
+        public List<string> toStringList()
+        {
+            List<string> listToWriteAccounts = new List<string>();
+            listToWriteAccounts.Add("Balance: " + balance.ToString());
+            foreach (string transacction in TransacctionHistory)
+            {
+                int counter = 0;
+                counter++;
+                listToWriteAccounts.Add($"Trasaction N #{counter}:" + transacction);
+            }
+            return listToWriteAccounts;
+        }
 
     }
 }
