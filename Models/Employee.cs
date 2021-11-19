@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace CA1_LucianoGimenez_23643.Models
 {
+    //Class for Employee with all the methods for an employee to manage account and customers
     public class Employee : Person
     {
-        public static bool LogIn()
+       
+        public override bool LogIn()
         {
             bool flag = true;
             do
@@ -33,9 +35,17 @@ namespace CA1_LucianoGimenez_23643.Models
         }
 
        
-        public void CreateCustomer(string FName, string LName, string Email)
+        public Customer CreateCustomer()
         {
-
+            Console.WriteLine("please enter first name");
+            string fName = Console.ReadLine();
+            Console.WriteLine("please enter last name");
+            string lName = Console.ReadLine();
+            Console.WriteLine("please enter email");
+            string eMail = Console.ReadLine();
+            Customer newCustomer = new Customer (fName, lName, eMail);
+            Console.WriteLine("Customer Created successfully");
+            return newCustomer;
         }
         
         public void DeleteCustomer(string Fname, string Lname)
@@ -43,12 +53,12 @@ namespace CA1_LucianoGimenez_23643.Models
 
         }
 
-        public void ShowAccountBalances()
+        public void ShowAccountWithBalances()
         {
 
         }
 
-        public void ShowAccountsNumbers()
+        public void ShowCustomersAccounts()
         {
 
         }

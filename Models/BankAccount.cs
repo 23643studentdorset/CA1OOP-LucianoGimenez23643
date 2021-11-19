@@ -27,7 +27,7 @@ namespace CA1_LucianoGimenez_23643.Models
         }
 
 
-        //Generates and return the account name
+        //Generates and return the account name 
         public string NameOfAccount()
         {
 
@@ -49,15 +49,17 @@ namespace CA1_LucianoGimenez_23643.Models
             string YY = yyzzDictionary[X1Capitalized.ToString()];
 
             string ZZ = yyzzDictionary[X2Capitalized.ToString()];
-            string accountName = XX + "-" + NN + "-" + YY + "-" + ZZ + "-" + type;
+            string accountName = XX + "-" + NN + "-" + YY + "-" + ZZ;
 
             return accountName;
         }
 
+        //Method that returns a list that has current balance as first element and transaction history in the other positions 
         public List<string> toStringList()
         {
             List<string> listToWriteAccounts = new List<string>();
             listToWriteAccounts.Add("Balance: " + balance.ToString());
+            
             foreach (string transacction in TransacctionHistory)
             {
                 int counter = 0;

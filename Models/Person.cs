@@ -5,9 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CA1_LucianoGimenez_23643.Models
-{ 
-    
-    public abstract class Person
+{
+
+    interface Iperson{
+        bool LogIn();
+        void LogOut();
+    }
+
+
+    //abstract class to manage withdraws, Lodges and LogOuts
+    public abstract class Person : Iperson
     {
         public void Lodge (double amount, BankAccount account)
         {
@@ -17,11 +24,13 @@ namespace CA1_LucianoGimenez_23643.Models
         {
 
         }
-
         public void LogOut()
         {
-            Console.WriteLine("Thank you for using  system");
+            Console.WriteLine("Thank you for using the system");
         }
+
+        public abstract bool LogIn();
+        
 
     }
 }
