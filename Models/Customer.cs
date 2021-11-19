@@ -24,7 +24,7 @@ namespace CA1_LucianoGimenez_23643.Models
 
         }
 
-        public void addBankAccount(BankAccount account)
+        public void attachBankAccountToCustomer(BankAccount account)
         {
             accounts.Add(account);
         }

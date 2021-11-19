@@ -66,8 +66,8 @@ namespace CA1_LucianoGimenez_23643
                                         FileManaging.WriteFile(accountCurrent.accountName + "- " + accountCurrent.type + ".txt", accountCurrent.toStringList());
                                         FileManaging.WriteFile(accountSavings.accountName + "- " + accountSavings.type + ".txt", accountSavings.toStringList());
 
-                                        dummyCustomer.addBankAccount(accountCurrent);
-                                        dummyCustomer.addBankAccount(accountSavings);
+                                        dummyCustomer.attachBankAccountToCustomer(accountCurrent);
+                                        dummyCustomer.attachBankAccountToCustomer(accountSavings);
                                         
                                         CustomersFileList.Add(dummyCustomer.customerInfo());
                                         
