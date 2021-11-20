@@ -18,7 +18,7 @@ namespace CA1_LucianoGimenez_23643.Models
     {
         public void Lodge (double amount, BankAccount account)
         {
-           
+            account.balance +=  amount;
         }
         public void Withdraw(double amount, BankAccount account)
         {

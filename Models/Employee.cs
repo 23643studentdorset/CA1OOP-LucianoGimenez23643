@@ -48,8 +48,50 @@ namespace CA1_LucianoGimenez_23643.Models
             return newCustomer;
         }
         
-        public void DeleteCustomer(string Fname, string Lname)
+        //Method to delete a customer it pop it out from the list of customers if it meets the requariments and returns a new list of customers
+        public List<Customer> DeleteCustomer(List<Customer> listOfCustomers)
         {
+            
+            List <Customer> copyListOfCustomers = new List<Customer>(listOfCustomers);
+            bool flag = true;
+            
+            
+            Console.WriteLine("please enter account number that would you would like to delete or  9 to go back" );
+            string accountNumberToDelete  = Console.ReadLine();
+
+            if (accountNumberToDelete.Equals("9"))
+            {
+                return listOfCustomers;
+            }
+            else
+            {
+                int index = 0;
+                foreach (Customer aCustomer in copyListOfCustomers)
+                {
+
+                    if (aCustomer.accountNumber.Equals(accountNumberToDelete))
+                    {
+                        if (aCustomer.accounts[0].balance != 0 && aCustomer.accounts[1].balance != 0)
+                        {
+                            listOfCustomers.RemoveAt(index);
+                            return listOfCustomers;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"You can not remove the account {accountNumberToDelete} the balance it is not in 0");
+                        }
+                        flag = false;
+                    }
+                    index++;
+                }
+                if (flag)
+                {
+                    Console.WriteLine($"The account {accountNumberToDelete} does not belong to one of our customers");
+                }
+                
+                return listOfCustomers;
+
+            }
 
         }
 

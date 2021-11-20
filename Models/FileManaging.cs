@@ -62,7 +62,19 @@ namespace CA1_LucianoGimenez_23643.Models
                 Console.WriteLine($"The {fileToRead} could not be read");
                 Console.WriteLine(e.Message);
             }
-        }       
+        }  
+        
+        //Returns a string list with the info requaried of each customer in every element of the list
+        public static List<String> ListCustomersToString(List<Customer> ListOfCustomers)
+        {
+            List<string> CustomersFileList = new List<string>();
+
+            foreach (Customer aCustomer in ListOfCustomers)
+            {
+                CustomersFileList.Add(aCustomer.customerInfo());
+            }
+            return CustomersFileList;
+        }
        
     }
 }

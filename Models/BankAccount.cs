@@ -11,7 +11,7 @@ namespace CA1_LucianoGimenez_23643.Models
         public string ownerFirstName { get; set; }
         public string ownerLastName { get; set; }
         public string type { get; set; }
-        public int balance { get; set; }
+        public double balance { get; set; }
         public string accountNumber { get; set; }
         
         public List<string> TransacctionHistory = new List<string>();
