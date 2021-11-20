@@ -88,6 +88,7 @@ namespace CA1_LucianoGimenez_23643
 
                                         CustomersFileList = FileManaging.ListCustomersToString(newCustomerList);
                                         FileManaging.WriteFile("Customers.txt", CustomersFileList);
+
                                         Console.WriteLine();
                                         break;
                                     }
@@ -97,11 +98,16 @@ namespace CA1_LucianoGimenez_23643
                                         index = dummyEmployee.EmployeeLodgement(CustomerList);
                                         if (index == -1)
                                         {
+                                            Console.WriteLine();
                                             break;
                                         }
-                                        dummyEmployee.Lodge(CustomerList, dummyEmployee, index);
-                                        Console.WriteLine();
-                                        break;
+                                        else
+                                        {
+                                            dummyEmployee.Lodge(CustomerList, dummyEmployee, index);
+                                            Console.WriteLine();
+                                            break;
+                                        }
+                                        
                                     }
                                 case "4":
                                     {

@@ -38,8 +38,34 @@ namespace CA1_LucianoGimenez_23643.Models
 
         }
 
-        //Read and show a File
-        public static void ReadFile(string fileName)
+        //Read a File and retrive a string list with all the lines
+        public static List<string> ReadFile(string fileName)
+        {
+            string path = "C:/Users/lucia/Downloads/CA_1_Files";
+            string fileToRead = $"{path}/{fileName}";
+
+            List<string> fileInStrings = new List<string>();
+
+            try
+            {
+                using (StreamReader sr = new StreamReader(fileToRead))
+                {
+                    string line;
+
+                    while ((line = sr.ReadLine()) is not null)
+                    {
+                        fileInStrings.Add(line);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"The {fileToRead} could not be read");
+                Console.WriteLine(e.Message);
+            }
+            return fileInStrings;
+        }
+        public static void PrintFile(string fileName)
         {
             string path = "C:/Users/lucia/Downloads/CA_1_Files";
             string fileToRead = $"{path}/{fileName}";
@@ -63,9 +89,9 @@ namespace CA1_LucianoGimenez_23643.Models
                 Console.WriteLine($"The {fileToRead} could not be read");
                 Console.WriteLine(e.Message);
             }
-        }  
-        
-        //Returns a string list with the info requaried of each customer in every element of the list
+        }
+
+        //Returns a string list with the info required of each customer in every element of the list
         public static List<String> ListCustomersToString(List<Customer> ListOfCustomers)
         {
             List<string> CustomersFileList = new List<string>();

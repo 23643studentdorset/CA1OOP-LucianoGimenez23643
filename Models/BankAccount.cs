@@ -54,8 +54,8 @@ namespace CA1_LucianoGimenez_23643.Models
             return accountName;
         }
 
-        //Method that returns a list that has current balance as first element and transaction history in the other positions 
-        public List<string> toStringList()
+        //Method that returns a list that has current balance as first element and transaction history in the others positions 
+        public List<string> toStringList(List<string> TransacctionHistory)
         {
             List<string> listToWriteAccounts = new List<string>();
             listToWriteAccounts.Add("Balance: " + balance.ToString());

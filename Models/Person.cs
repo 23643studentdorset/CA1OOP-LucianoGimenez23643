@@ -49,16 +49,18 @@ namespace CA1_LucianoGimenez_23643.Models
                 CustomerList[index].accounts[0].balance += amountDouble;
                 output = "Current";
 
+                string fileName = CustomerList[index].accounts[0].accountNumber + "-" + CustomerList[index].accounts[0].type + ".txt";
                 string date = DateTime.Now.ToString("dd.MM.yyyy");
                 List<string> historyList = new List<string>();
-                foreach (string HistoryString in CustomerList[index].accounts[0].toStringList())
+                
+                foreach (string newHistoryString in CustomerList[index].accounts[0].toStringList(FileManaging.ReadFile(fileName)))
                 {
-                    historyList.Add(HistoryString);
+                    historyList.Add(newHistoryString);
                 }
 
                 historyList.Add($"{date}:Lodge:{amountDouble}:{CustomerList[index].accounts[0].balance}");
                 
-                FileManaging.WriteFile(CustomerList[index].accounts[0].accountNumber + "-" + CustomerList[index].accounts[0].type +".txt", historyList);
+                FileManaging.WriteFile(fileName, historyList);
             }
             else if (typeOfAccount.Equals("2"))
             {
@@ -67,14 +69,15 @@ namespace CA1_LucianoGimenez_23643.Models
 
                 string date = DateTime.Now.ToString("dd.MM.yyyy");
                 List<string> historyList = new List<string>();
-                foreach (string HistoryString in CustomerList[index].accounts[1].toStringList())
+                string fileName = CustomerList[index].accounts[1].accountNumber + "-" + CustomerList[index].accounts[1].type + ".txt";
+                foreach (string newHistoryString in CustomerList[index].accounts[1].toStringList(FileManaging.ReadFile(fileName)))
                 {
-                    historyList.Add(HistoryString);
+                    historyList.Add(newHistoryString);
                 }
 
                 historyList.Add($"{date}:Lodge:{amountDouble}:{CustomerList[index].accounts[1].balance}");
                 
-                FileManaging.WriteFile(CustomerList[index].accounts[1].accountNumber + "-" + CustomerList[index].accounts[1].type + ".txt", historyList);
+                FileManaging.WriteFile(fileName, historyList);
             }
             
 
