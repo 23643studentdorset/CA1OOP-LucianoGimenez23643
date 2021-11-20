@@ -48,15 +48,18 @@ namespace CA1_LucianoGimenez_23643.Models
             return newCustomer;
         }
         
-        //Method to delete a customer it pop it out from the list of customers if it meets the requariments and returns a new list of customers
+        //Method to delete a customer, it pop it out from the list of customers if it meets the requariments and returns
+        //a new list of customers and delete their file's accounts
         public List<Customer> DeleteCustomer(List<Customer> listOfCustomers)
         {
-            
-            List <Customer> copyListOfCustomers = new List<Customer>(listOfCustomers);
+            List <Customer> copyListOfCustomers = new List<Customer>();
+            foreach(Customer aCustomer in listOfCustomers)
+            {
+                copyListOfCustomers.Add(aCustomer);
+            }
             bool flag = true;
-            
-            
-            Console.WriteLine("please enter account number that would you would like to delete or  9 to go back" );
+                       
+            Console.WriteLine("please, enter account number that would you would like to delete or  9 to go back" );
             string accountNumberToDelete  = Console.ReadLine();
 
             if (accountNumberToDelete.Equals("9"))
@@ -68,11 +71,12 @@ namespace CA1_LucianoGimenez_23643.Models
                 int index = 0;
                 foreach (Customer aCustomer in copyListOfCustomers)
                 {
-
                     if (aCustomer.accountNumber.Equals(accountNumberToDelete))
                     {
                         if (aCustomer.accounts[0].balance != 0 && aCustomer.accounts[1].balance != 0)
                         {
+                            FileManaging.DeleteFile(aCustomer.accountNumber + "-Current.txt");
+                            FileManaging.DeleteFile(aCustomer.accountNumber + "-Savings.txt");
                             listOfCustomers.RemoveAt(index);
                             return listOfCustomers;
                         }
@@ -88,11 +92,39 @@ namespace CA1_LucianoGimenez_23643.Models
                 {
                     Console.WriteLine($"The account {accountNumberToDelete} does not belong to one of our customers");
                 }
-                
                 return listOfCustomers;
+            }
+        }
 
+        //Method to manage outputs takes a list of customers and returns the index of the customer with that account number
+        public int EmployeeLodgement(List<Customer> CustomerList)
+        {
+            int counter = 0;
+            bool outputFlag = true;
+            int index = 0;
+
+            Console.WriteLine("Please enter the acount number or 9 to go back");
+            string accountNumber = Console.ReadLine();
+            if (accountNumber.Equals("9"))
+            {
+                return -1;
             }
 
+            foreach (Customer aCustomer in CustomerList)
+            {
+                if (aCustomer.accountNumber.Equals(accountNumber))
+                {
+                    index = counter;
+                    outputFlag = false;
+                }
+                counter++;
+            }
+            if (outputFlag)
+            {
+                Console.WriteLine($"The account {accountNumber} does not belong to one of our customers");
+                return -1;
+            }
+            return index;
         }
 
         public void ShowAccountWithBalances()

@@ -61,11 +61,11 @@ namespace CA1_LucianoGimenez_23643
                                     {
                                         Customer dummyCustomer = dummyEmployee.CreateCustomer();
                                         
-                                        BankAccount accountCurrent = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "current", 0);
-                                        BankAccount accountSavings = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "savings", 0);
+                                        BankAccount accountCurrent = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "Current", 0);
+                                        BankAccount accountSavings = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "Savings", 0);
 
-                                        FileManaging.WriteFile(accountCurrent.accountNumber + "- " + accountCurrent.type + ".txt", accountCurrent.toStringList());
-                                        FileManaging.WriteFile(accountSavings.accountNumber + "- " + accountSavings.type + ".txt", accountSavings.toStringList());
+                                        FileManaging.WriteFile(accountCurrent.accountNumber + "-" + accountCurrent.type + ".txt", accountCurrent.toStringList());
+                                        FileManaging.WriteFile(accountSavings.accountNumber + "-" + accountSavings.type + ".txt", accountSavings.toStringList());
 
                                         dummyCustomer.attachBankAccountToCustomer(accountCurrent);
                                         dummyCustomer.attachBankAccountToCustomer(accountSavings);
@@ -73,73 +73,34 @@ namespace CA1_LucianoGimenez_23643
 
                                         CustomerList.Add(dummyCustomer);
                                         CustomersFileList = FileManaging.ListCustomersToString(CustomerList);
-                                        
                                         FileManaging.WriteFile("Customers.txt", CustomersFileList);
+                                        Console.WriteLine();
                                         break;
                                     }
                                 case "2": //Delete a customer
                                     {
-                                        CustomerList = dummyEmployee.DeleteCustomer(CustomerList);
-                                        CustomersFileList = FileManaging.ListCustomersToString(CustomerList);
+
+                                        List<Customer> newCustomerList = new List<Customer>();
+                                        foreach (Customer aCustomer in dummyEmployee.DeleteCustomer(CustomerList))
+                                        {
+                                            newCustomerList.Add(aCustomer);
+                                        }
+
+                                        CustomersFileList = FileManaging.ListCustomersToString(newCustomerList);
                                         FileManaging.WriteFile("Customers.txt", CustomersFileList);
+                                        Console.WriteLine();
                                         break;
                                     }
                                 case "3": //Lodge
                                     {
-                                        int counter = 0;
-                                        bool outputFlag = true;
                                         int index = 0;
-                                        
-                                        Console.WriteLine("Please enter the acount number or 9 to go back");
-                                        string accountNumber = Console.ReadLine();
-                                        
-                                        foreach (Customer aCustomer in CustomerList)
+                                        index = dummyEmployee.EmployeeLodgement(CustomerList);
+                                        if (index == -1)
                                         {
-                                            if (aCustomer.accountNumber.Equals(accountNumber))
-                                            {
-                                                index = counter;
-                                                outputFlag = false;
-                                            }
-                                            counter++;
-                                        }
-                                        if (outputFlag)
-                                        {
-                                            Console.WriteLine($"The account {accountNumber} does not belong to one of our customers");
-                                        }
-                                        
-                                        Console.WriteLine("Would you like to Lodge to:");
-                                        Console.WriteLine("Plase, Enter an option");
-                                        Console.WriteLine("1. Current" );
-                                        Console.WriteLine("2. Savings");
-                                        string typeOfAccount = Console.ReadLine();
-                                        
-                                        Console.WriteLine("How much would you Lodge?");
-                                        string amount = Console.ReadLine();
-                                        double amountDouble = 0;
-                                        try
-                                        {
-                                            amountDouble = Convert.ToDouble(amount);
-                                        }
-                                        catch (FormatException)
-                                        {
-                                            Console.WriteLine("The value is not an amount");
                                             break;
                                         }
-                                        catch (OverflowException)
-                                        {
-                                            Console.WriteLine("The value is not an amount");
-                                            break;
-                                        }
-
-                                        if (typeOfAccount.Equals("1"))
-                                        {
-                                            dummyEmployee.Lodge(amountDouble, CustomerList[index].accounts[0]);
-                                        }else if (typeOfAccount.Equals("2"))
-                                        {
-                                            dummyEmployee.Lodge(amountDouble, CustomerList[index].accounts[2]);
-                                        }
-
-                                            
+                                        dummyEmployee.Lodge(CustomerList, dummyEmployee, index);
+                                        Console.WriteLine();
                                         break;
                                     }
                                 case "4":

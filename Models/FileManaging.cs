@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 namespace CA1_LucianoGimenez_23643.Models
 {
     public class FileManaging
-    {      
+    {
         
+
         //Write a file
         public static void WriteFile(string filename, List<string> fileInfo)
         {
@@ -75,6 +76,13 @@ namespace CA1_LucianoGimenez_23643.Models
             }
             return CustomersFileList;
         }
-       
+        
+        //Delete a file
+        public static void DeleteFile(string fileName)
+        {
+            string path = "C:/Users/lucia/Downloads/CA_1_Files";
+            File.Delete(path + "/" + fileName);
+
+        }
     }
 }
