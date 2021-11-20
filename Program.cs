@@ -63,8 +63,8 @@ namespace CA1_LucianoGimenez_23643
                                         BankAccount accountCurrent = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "current", 0);
                                         BankAccount accountSavings = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "savings", 0);
 
-                                        FileManaging.WriteFile(accountCurrent.accountName + "- " + accountCurrent.type + ".txt", accountCurrent.toStringList());
-                                        FileManaging.WriteFile(accountSavings.accountName + "- " + accountSavings.type + ".txt", accountSavings.toStringList());
+                                        FileManaging.WriteFile(accountCurrent.accountNumber + "- " + accountCurrent.type + ".txt", accountCurrent.toStringList());
+                                        FileManaging.WriteFile(accountSavings.accountNumber + "- " + accountSavings.type + ".txt", accountSavings.toStringList());
 
                                         dummyCustomer.attachBankAccountToCustomer(accountCurrent);
                                         dummyCustomer.attachBankAccountToCustomer(accountSavings);

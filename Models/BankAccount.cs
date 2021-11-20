@@ -12,7 +12,7 @@ namespace CA1_LucianoGimenez_23643.Models
         public string ownerLastName { get; set; }
         public string type { get; set; }
         public int balance { get; set; }
-        public string accountName { get; set; }
+        public string accountNumber { get; set; }
         
         public List<string> TransacctionHistory = new List<string>();
 
@@ -22,7 +22,7 @@ namespace CA1_LucianoGimenez_23643.Models
             ownerLastName = _ownerLastName;
             type = _type;
             balance = _balance;
-            accountName = NameOfAccount();
+            accountNumber = NameOfAccount();
 
         }
 

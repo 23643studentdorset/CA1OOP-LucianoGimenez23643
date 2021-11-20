@@ -12,6 +12,7 @@ namespace CA1_LucianoGimenez_23643.Models
         public string lastName { get; set; }
         public string eMail { get; set; }
         public string accountNumber { get; set; }
+        public string pin { get; set; }
 
         public List<BankAccount> accounts = new List<BankAccount>();
 
@@ -27,9 +28,19 @@ namespace CA1_LucianoGimenez_23643.Models
         public void attachBankAccountToCustomer(BankAccount account)
         {
             accounts.Add(account);
+            accountNumber = account.NameOfAccount();
         }
 
-    
+        public string setPin()
+        {
+            char[] accountNumbertoCharArray = accountNumber.ToCharArray();
+            string newPin = accountNumbertoCharArray[6].ToString() + accountNumbertoCharArray[7].ToString() 
+                          + accountNumbertoCharArray[9].ToString() + accountNumbertoCharArray[10].ToString();
+            return newPin;
+        }
+
+
+
         public override bool LogIn()
         {
             bool flag = true;
@@ -59,15 +70,15 @@ namespace CA1_LucianoGimenez_23643.Models
         }
 
         //Display all the transactions of one account by reading the file of that account
-        public void ShowHistory(BankAccount account)
+        public void ShowHistory()
         {
-            FileManaging.ReadFile(account.accountName + ".txt");
+            FileManaging.ReadFile(accountNumber + ".txt");
         }
 
         //Method that returns a string with all customer public data
         public string customerInfo()
         {
-            string customerInfoString = accounts[0].accountName + " : " + firstName + " : " + lastName + " : " + eMail;
+            string customerInfoString = accountNumber + " : " + firstName + " : " + lastName + " : " + eMail;
             return customerInfoString;
         }
 
