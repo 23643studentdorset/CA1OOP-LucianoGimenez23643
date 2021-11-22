@@ -40,39 +40,59 @@ namespace CA1_LucianoGimenez_23643.Models
         }
 
 
-
-        public override bool LogIn()
+        //login returns index of a customer if the customer exist and -1 if the customers does not exist
+        public override int LogIn(List<Customer> CustomerList)
         {
-            bool flag = true;
             Console.WriteLine("Hello");
-            do
+            Console.WriteLine("Please enter your first name:");
+            string fName = Console.ReadLine();
+            Console.WriteLine("Please enter your last name:");
+            string lName = Console.ReadLine();
+            Console.WriteLine("Please enter your account number");
+            string accountNumberToLogIn = Console.ReadLine();
+            Console.WriteLine("Please enter your pin");
+            string pinToLogIn = Console.ReadLine();
+
+            int counter = 0;
+            foreach (Customer aCustomer in CustomerList)
             {
-                Console.WriteLine("Please enter your first name:");
-                string fName = Console.ReadLine();
-                Console.WriteLine("Please enter your last name:");
-                string lName = Console.ReadLine();
-                Console.WriteLine("Please enter your pin");
-                string pin = Console.ReadLine();
+                if (fName.Equals(aCustomer.firstName) && lName.Equals(aCustomer.lastName) && accountNumberToLogIn.Equals(aCustomer.accountNumber) && pinToLogIn.Equals(aCustomer.pin))
+                {
+                    return counter;
+                }
+                counter++;
+            }
+            Console.WriteLine("The customer is not in our Data Base");
+            return -1;
 
-                
-                //correct that (check what C# gives you when the file is not there
-                //if (pin.Equals(BankAccount.NameOfAccount(fName, lName, "current").ToCharArray()))
-             //   {
-              //      Console.WriteLine($"Welcome {fName} {lName}");
-            //    }
-           //     else
-             //   {
-              //      Console.WriteLine("Your data is not correct please try again");
-             //   }
-
-            } while (flag == true);
-            return true;
+            
         }
 
         //Display all the transactions of one account by reading the file of that account
-        public void ShowHistory()
+        public void ShowHistory(List <Customer> CustomerList, int indexOfCustomer)
         {
-            FileManaging.ReadFile(accountNumber + ".txt");
+            Console.WriteLine("Would you like to see the transacction history from:");
+            Console.WriteLine("Plase, Enter an option");
+            Console.WriteLine("1. Current");
+            Console.WriteLine("2. Savings");
+            string typeOfAccount = Console.ReadLine();
+
+            string fileName = "";
+            if (typeOfAccount.Equals("1"))
+            {
+                fileName = CustomerList[indexOfCustomer].accounts[0].NameOfAccount() + "-Current.txt";
+            }
+            else if (typeOfAccount.Equals("2"))
+            {
+                fileName = CustomerList[indexOfCustomer].accounts[0].NameOfAccount() + "-Savings.txt";
+            }
+            else
+            {
+                Console.WriteLine("The option you enter is not available");
+                return;
+            }
+            
+            FileManaging.ReadFile(fileName);
         }
 
         //Method that returns a string with all customer public data

@@ -9,8 +9,8 @@ namespace CA1_LucianoGimenez_23643.Models
     //Class for Employee with all the methods for an employee to manage account and customers
     public class Employee : Person
     {
-       
-        public override bool LogIn()
+       //Method to Login as an employee return 1 to log in -1 to go out or pin incorrect
+        public override int LogIn(List<Customer> CustomerList)
         {
             bool flag = true;
             do
@@ -24,17 +24,17 @@ namespace CA1_LucianoGimenez_23643.Models
                 }
                 else if (pin.Equals("9"))
                 {
-                    return false;
+                    return -1;
                 }
                 else
                 {
                     Console.WriteLine("Pin incorrect");
                 }
             } while (flag == true);
-            return true;
+            return 1;
         }
 
-       
+       //Method to create a customer instance
         public Customer CreateCustomer()
         {
             Console.WriteLine("please enter first name");
@@ -49,7 +49,7 @@ namespace CA1_LucianoGimenez_23643.Models
         }
         
         //Method to delete a customer, it pop it out from the list of customers if it meets the requariments and returns
-        //a new list of customers and delete their file's accounts
+        //a new list of customers, and delete their file's accounts
         public List<Customer> DeleteCustomer(List<Customer> listOfCustomers)
         {
             List <Customer> copyListOfCustomers = new List<Customer>();
@@ -73,7 +73,7 @@ namespace CA1_LucianoGimenez_23643.Models
                 {
                     if (aCustomer.accountNumber.Equals(accountNumberToDelete))
                     {
-                        if (aCustomer.accounts[0].balance != 0 && aCustomer.accounts[1].balance != 0)
+                        if (aCustomer.accounts[0].balance == 0 && aCustomer.accounts[1].balance == 0)
                         {
                             FileManaging.DeleteFile(aCustomer.accountNumber + "-Current.txt");
                             FileManaging.DeleteFile(aCustomer.accountNumber + "-Savings.txt");
@@ -97,7 +97,7 @@ namespace CA1_LucianoGimenez_23643.Models
         }
 
         //Method to manage outputs takes a list of customers and returns the index of the customer with that account number
-        public int EmployeeLodgement(List<Customer> CustomerList)
+        public int searchCustomer(List<Customer> CustomerList)
         {
             int counter = 0;
             bool outputFlag = true;
@@ -127,14 +127,15 @@ namespace CA1_LucianoGimenez_23643.Models
             return index;
         }
 
-        public void ShowAccountWithBalances()
+        // Methods that returns strings with balances from all the customers
+        public void ShowAccountWithBalances(List<Customer> CustomerList)
         {
-
-        }
-
-        public void ShowCustomersAccounts()
-        {
-
+            foreach (Customer aCustomer in CustomerList)
+            {
+                
+                Console.WriteLine($"{aCustomer.accountNumber} {aCustomer.firstName} {aCustomer.lastName} Current balance: {aCustomer.accounts[0].balance} " +
+                                  $"savings balance: {aCustomer.accounts[1].balance}");
+            }
         }
     }
 }

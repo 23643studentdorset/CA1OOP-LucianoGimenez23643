@@ -21,8 +21,10 @@ namespace CA1_LucianoGimenez_23643
                 FileManaging.WriteFile(bankAcc1.accountName + ".txt", bankAcc1.toStringList());
             */
             
-            //Create empty Customer.txt
+            //Create Customer.txt
+            
             List<string> CustomersFileList = new List<string>();
+            
             FileManaging.WriteFile("Customers.txt", CustomersFileList);
             List<Customer> CustomerList = new List<Customer>();
 
@@ -37,35 +39,35 @@ namespace CA1_LucianoGimenez_23643
                 string option = Console.ReadLine();
                 if (option == "1")
                 {
-                    Employee dummyEmployee = new Employee(); 
-                    if (dummyEmployee.LogIn())
+                    Employee dummyEmployee = new Employee();
+                    if (dummyEmployee.LogIn(CustomerList) == 1)
                     {
                         string option2 = "";
                         //Do while with options to execute Employee privileges
                         do
                         {
-                            
+
                             Console.WriteLine("Plase, Enter an option");
-                            
                             Console.WriteLine("1. Create a new customer");
                             Console.WriteLine("2. Delete a customer");
-                            Console.WriteLine("3. Lodge from an account");
+                            Console.WriteLine("3. Lodge to an account");
                             Console.WriteLine("4. Withdraw from an account");
                             Console.WriteLine("5. Show list of all customers");
                             Console.WriteLine("6. Show customers with balance");
-                            Console.WriteLine("0. To go back");
+                            Console.WriteLine("9. To go back");
                             option2 = Console.ReadLine();
                             switch (option2)
                             {
                                 case "1": //Create a customer
                                     {
                                         Customer dummyCustomer = dummyEmployee.CreateCustomer();
-                                        
+
                                         BankAccount accountCurrent = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "Current", 0);
                                         BankAccount accountSavings = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "Savings", 0);
 
-                                        FileManaging.WriteFile(accountCurrent.accountNumber + "-" + accountCurrent.type + ".txt", accountCurrent.toStringList());
-                                        FileManaging.WriteFile(accountSavings.accountNumber + "-" + accountSavings.type + ".txt", accountSavings.toStringList());
+                                        List<string> emtyList = new List<string>();
+                                        FileManaging.WriteFile(accountCurrent.accountNumber + "-" + accountCurrent.type + ".txt", accountCurrent.toStringList(emtyList));
+                                        FileManaging.WriteFile(accountSavings.accountNumber + "-" + accountSavings.type + ".txt", accountSavings.toStringList(emtyList));
 
                                         dummyCustomer.attachBankAccountToCustomer(accountCurrent);
                                         dummyCustomer.attachBankAccountToCustomer(accountSavings);
@@ -95,7 +97,7 @@ namespace CA1_LucianoGimenez_23643
                                 case "3": //Lodge
                                     {
                                         int index = 0;
-                                        index = dummyEmployee.EmployeeLodgement(CustomerList);
+                                        index = dummyEmployee.searchCustomer(CustomerList);
                                         if (index == -1)
                                         {
                                             Console.WriteLine();
@@ -103,25 +105,39 @@ namespace CA1_LucianoGimenez_23643
                                         }
                                         else
                                         {
-                                            dummyEmployee.Lodge(CustomerList, dummyEmployee, index);
+                                            dummyEmployee.Lodge(CustomerList, index);
                                             Console.WriteLine();
                                             break;
                                         }
-                                        
+
                                     }
-                                case "4":
+                                case "4": //Withdraw
                                     {
+                                        int index = 0;
+                                        index = dummyEmployee.searchCustomer(CustomerList);
+                                        if (index == -1)
+                                        {
+                                            Console.WriteLine();
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            dummyEmployee.Withdraw(CustomerList, index);
+                                            Console.WriteLine();
+                                            break;
+                                        }
+                                    }
+                                case "5": //Shows a list of all customers
+                                    {
+                                        FileManaging.ReadFile("Customers.txt");
                                         break;
                                     }
-                                case "5":
+                                case "6": //Shows a list of all accounts with their balance
                                     {
+                                        dummyEmployee.ShowAccountWithBalances(CustomerList);
                                         break;
                                     }
-                                case "6":
-                                    {
-                                        break;
-                                    }
-                                case "0":
+                                case "9": //log out
                                     {
                                         dummyEmployee.LogOut();
                                         break;
@@ -129,19 +145,55 @@ namespace CA1_LucianoGimenez_23643
 
                             }
 
-                        } while (option2 != "0");
+                        } while (option2 != "9");
                     }
-                        
-                    
-                }else if (option == "2")
-                {
-                    //do while
-                    //Customer.LogIn();
-                    
-                }else
-                {
-                    Console.WriteLine("The option entered is not a valid valid option");
 
+
+                }
+                else if (option == "2")
+                {
+                    Customer dummyCustomer = new Customer("Unknown", "Unknown", "Unknown");
+                    int indexOfCustomer = dummyCustomer.LogIn(CustomerList);
+                    if (indexOfCustomer != -1)
+                    {
+                        string option2 = "";
+                        //Do while with options to execute Employee privileges
+                        do
+                        {
+
+                            Console.WriteLine("Plase, Enter an option");
+                            Console.WriteLine("1. Show transacction History");
+                            Console.WriteLine("2. Lodge to an account");
+                            Console.WriteLine("3. Withdraw from an account");
+                            Console.WriteLine("9. To go back");
+                            option2 = Console.ReadLine();
+                            switch (option2)
+                            {
+                                case "1": //show transacction history
+                                    {
+                                        dummyCustomer.ShowHistory(CustomerList, indexOfCustomer);
+                                        break;
+                                    }
+                                case "2": //Lodge to an account
+                                    {
+                                        dummyCustomer.Lodge(CustomerList, indexOfCustomer);
+                                        break;
+                                    }
+                                case "3": //Withdraw from an account
+                                    {
+                                        dummyCustomer.Withdraw(CustomerList, indexOfCustomer);
+                                        break;
+                                    }
+                                case "4": //To go back
+                                    {
+                                        dummyCustomer.LogOut();
+                                        break;
+                                    }
+
+                            }
+
+                        } while (option2 != "9");
+                    }
                 }
             } while (flag);
 

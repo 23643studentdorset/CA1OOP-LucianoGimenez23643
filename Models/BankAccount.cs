@@ -57,16 +57,15 @@ namespace CA1_LucianoGimenez_23643.Models
         //Method that returns a list that has current balance as first element and transaction history in the others positions 
         public List<string> toStringList(List<string> TransacctionHistory)
         {
-            List<string> listToWriteAccounts = new List<string>();
-            listToWriteAccounts.Add("Balance: " + balance.ToString());
+            List<string> stringsToWriteAccounts = new List<string>();
+            stringsToWriteAccounts.Add("Balance: " + balance.ToString());
             
             foreach (string transacction in TransacctionHistory)
             {
-                int counter = 0;
-                counter++;
-                listToWriteAccounts.Add($"Trasaction N #{counter}:" + transacction);
+                stringsToWriteAccounts.Add(transacction);
+                
             }
-            return listToWriteAccounts;
+            return stringsToWriteAccounts;
         }
 
     }
