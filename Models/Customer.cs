@@ -92,7 +92,7 @@ namespace CA1_LucianoGimenez_23643.Models
                 return;
             }
             
-            FileManaging.ReadFile(fileName);
+            FileManaging.PrintFile(fileName);
         }
 
         //Method that returns a string with all customer public data

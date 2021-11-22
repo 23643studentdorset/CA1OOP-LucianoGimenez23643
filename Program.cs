@@ -61,21 +61,22 @@ namespace CA1_LucianoGimenez_23643
                                 case "1": //Create a customer
                                     {
                                         Customer dummyCustomer = dummyEmployee.CreateCustomer();
+                                         dummyCustomer.pin = dummyCustomer.setPin();
 
                                         BankAccount accountCurrent = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "Current", 0);
                                         BankAccount accountSavings = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "Savings", 0);
+
+                                        dummyCustomer.attachBankAccountToCustomer(accountCurrent);
+                                        dummyCustomer.attachBankAccountToCustomer(accountSavings);
 
                                         List<string> emtyList = new List<string>();
                                         FileManaging.WriteFile(accountCurrent.accountNumber + "-" + accountCurrent.type + ".txt", accountCurrent.toStringList(emtyList));
                                         FileManaging.WriteFile(accountSavings.accountNumber + "-" + accountSavings.type + ".txt", accountSavings.toStringList(emtyList));
 
-                                        dummyCustomer.attachBankAccountToCustomer(accountCurrent);
-                                        dummyCustomer.attachBankAccountToCustomer(accountSavings);
-                                        dummyCustomer.setPin();
-
                                         CustomerList.Add(dummyCustomer);
                                         CustomersFileList = FileManaging.ListCustomersToString(CustomerList);
                                         FileManaging.WriteFile("Customers.txt", CustomersFileList);
+                                        Console.WriteLine(dummyCustomer.pin);
                                         Console.WriteLine();
                                         break;
                                     }
@@ -129,7 +130,7 @@ namespace CA1_LucianoGimenez_23643
                                     }
                                 case "5": //Shows a list of all customers
                                     {
-                                        FileManaging.ReadFile("Customers.txt");
+                                        FileManaging.PrintFile("Customers.txt");
                                         break;
                                     }
                                 case "6": //Shows a list of all accounts with their balance
@@ -154,6 +155,7 @@ namespace CA1_LucianoGimenez_23643
                 {
                     Customer dummyCustomer = new Customer("Unknown", "Unknown", "Unknown");
                     int indexOfCustomer = dummyCustomer.LogIn(CustomerList);
+                    
                     if (indexOfCustomer != -1)
                     {
                         string option2 = "";

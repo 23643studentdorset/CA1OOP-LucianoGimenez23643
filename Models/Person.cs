@@ -145,7 +145,7 @@ namespace CA1_LucianoGimenez_23643.Models
                         historyList.Add(newTransacction);
                     }
 
-                    historyList.Add($"{date}   :  Lodge:{amountDouble}  :   New balance:{CustomerList[index].accounts[0].balance}");
+                    historyList.Add($"{date}   :  withdraw:{amountDouble}  :   New balance:{CustomerList[index].accounts[0].balance}");
 
                     FileManaging.WriteFile(fileName, historyList);
                     Console.WriteLine($"You withdraw {amount} succesfuly from {output} account");
@@ -153,6 +153,7 @@ namespace CA1_LucianoGimenez_23643.Models
                 else
                 {
                     Console.WriteLine("The account does not have enought founds to withdraw that amount");
+                    return;
                 }
                 
             }
@@ -176,18 +177,20 @@ namespace CA1_LucianoGimenez_23643.Models
                         historyList.Add(newTransacction);
                     }
 
-                    historyList.Add($"{date}   :  Lodge:{amountDouble}  :   New balance:{CustomerList[index].accounts[1].balance}");
+                    historyList.Add($"{date}   :  withdraw:{amountDouble}  :   New balance:{CustomerList[index].accounts[1].balance}");
 
                     FileManaging.WriteFile(fileName, historyList);
+                    Console.WriteLine($"You withdraw {amount} succesfuly from {output} account");
                 }
                 else
                 {
                     Console.WriteLine("The account does not have enought founds to withdraw that amount");
+                    return;
                 }
             }
 
 
-            Console.WriteLine($"You Lodge {amount} succesfuly in your {output} account ");
+           
 
         }
         public void LogOut()
