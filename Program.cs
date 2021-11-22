@@ -21,10 +21,9 @@ namespace CA1_LucianoGimenez_23643
                 FileManaging.WriteFile(bankAcc1.accountName + ".txt", bankAcc1.toStringList());
             */
             
-            //Create Customer.txt
+            //Create Customer.txt and a directory in the desktop called CA1-files-LucianoGimenez-23643
             
             List<string> CustomersFileList = new List<string>();
-            
             FileManaging.WriteFile("Customers.txt", CustomersFileList);
             List<Customer> CustomerList = new List<Customer>();
 
@@ -83,7 +82,7 @@ namespace CA1_LucianoGimenez_23643
                                     }
                                 case "2": //Delete a customer
                                     {
-
+                                        
                                         List<Customer> newCustomerList = new List<Customer>();
                                         foreach (Customer aCustomer in dummyEmployee.DeleteCustomer(CustomerList))
                                         {
@@ -93,6 +92,7 @@ namespace CA1_LucianoGimenez_23643
                                         CustomersFileList = FileManaging.ListCustomersToString(newCustomerList);
                                         FileManaging.WriteFile("Customers.txt", CustomersFileList);
 
+                                       
                                         Console.WriteLine();
                                         break;
                                     }
