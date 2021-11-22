@@ -6,4 +6,8 @@
     <RootNamespace>CA1_LucianoGimenez_23643</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CA1-files-LucianoGimenez-23643\" />
+  </ItemGroup>
+
 </Project>

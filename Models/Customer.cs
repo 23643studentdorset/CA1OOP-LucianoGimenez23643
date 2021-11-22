@@ -20,9 +20,7 @@ namespace CA1_LucianoGimenez_23643.Models
         {
             firstName = _firstName;
             lastName = _lastName;
-            eMail = _eMail;
-           
-
+            eMail = _eMail; 
         }
 
         public void attachBankAccountToCustomer(BankAccount account)
@@ -31,12 +29,13 @@ namespace CA1_LucianoGimenez_23643.Models
             accountNumber = account.NameOfAccount();
         }
 
-        public string setPin()
+        public void setPin()
         {
             char[] accountNumbertoCharArray = accountNumber.ToCharArray();
+            
             string newPin = accountNumbertoCharArray[6].ToString() + accountNumbertoCharArray[7].ToString() 
                           + accountNumbertoCharArray[9].ToString() + accountNumbertoCharArray[10].ToString();
-            return newPin;
+            pin = newPin;
         }
 
 

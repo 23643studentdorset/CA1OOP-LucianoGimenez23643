@@ -14,7 +14,7 @@ namespace CA1_LucianoGimenez_23643.Models
         //Write a file
         public static void WriteFile(string filename, List<string> fileInfo)
         {
-            string path = "C:/Users/lucia/Downloads/CA_1_Files";
+            string path = "C:/Users/lucia/source/repos/CA1-LucianoGimenez-23643/CA1-files-LucianoGimenez-23643";
 
             string fileToWrite = $"{path}/{filename}";
 
@@ -41,7 +41,7 @@ namespace CA1_LucianoGimenez_23643.Models
         //Read a File and retrive a string list with all the lines
         public static List<string> ReadFile(string fileName)
         {
-            string path = "C:/Users/lucia/Downloads/CA_1_Files";
+            string path = "C:/Users/lucia/source/repos/CA1-LucianoGimenez-23643/CA1-files-LucianoGimenez-23643";
             string fileToRead = $"{path}/{fileName}";
 
             List<string> fileInStrings = new List<string>();
@@ -67,7 +67,7 @@ namespace CA1_LucianoGimenez_23643.Models
         }
         public static void PrintFile(string fileName)
         {
-            string path = "C:/Users/lucia/Downloads/CA_1_Files";
+            string path = "C:/Users/lucia/source/repos/CA1-LucianoGimenez-23643/CA1-files-LucianoGimenez-23643";
             string fileToRead = $"{path}/{fileName}";
 
             try
@@ -106,7 +106,7 @@ namespace CA1_LucianoGimenez_23643.Models
         //Delete a file
         public static void DeleteFile(string fileName)
         {
-            string path = "C:/Users/lucia/Downloads/CA_1_Files";
+            string path = "C:/Users/lucia/source/repos/CA1-LucianoGimenez-23643/CA1-files-LucianoGimenez-23643";
             File.Delete(path + "/" + fileName);
 
         }

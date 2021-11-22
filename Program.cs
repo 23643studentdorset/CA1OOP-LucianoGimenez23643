@@ -61,13 +61,14 @@ namespace CA1_LucianoGimenez_23643
                                 case "1": //Create a customer
                                     {
                                         Customer dummyCustomer = dummyEmployee.CreateCustomer();
-                                         dummyCustomer.pin = dummyCustomer.setPin();
+                                        
 
                                         BankAccount accountCurrent = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "Current", 0);
                                         BankAccount accountSavings = new BankAccount(dummyCustomer.firstName, dummyCustomer.lastName, "Savings", 0);
 
                                         dummyCustomer.attachBankAccountToCustomer(accountCurrent);
                                         dummyCustomer.attachBankAccountToCustomer(accountSavings);
+                                        dummyCustomer.setPin();
 
                                         List<string> emtyList = new List<string>();
                                         FileManaging.WriteFile(accountCurrent.accountNumber + "-" + accountCurrent.type + ".txt", accountCurrent.toStringList(emtyList));
@@ -76,7 +77,7 @@ namespace CA1_LucianoGimenez_23643
                                         CustomerList.Add(dummyCustomer);
                                         CustomersFileList = FileManaging.ListCustomersToString(CustomerList);
                                         FileManaging.WriteFile("Customers.txt", CustomersFileList);
-                                        Console.WriteLine(dummyCustomer.pin);
+                                        //Console.WriteLine(dummyCustomer.pin);
                                         Console.WriteLine();
                                         break;
                                     }
