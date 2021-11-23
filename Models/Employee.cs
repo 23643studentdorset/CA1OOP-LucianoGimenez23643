@@ -9,7 +9,7 @@ namespace CA1_LucianoGimenez_23643.Models
     //Class for Employee with all the methods for an employee to manage account and customers
     public class Employee : Person
     {
-       //Method to Login as an employee return 1 to log in -1 to go out or pin incorrect
+       //Method to Login as an employee return 1 to login or -1 to go out or  if the pin is incorrect
         public override int LogIn(List<Customer> CustomerList)
         {
             bool flag = true;

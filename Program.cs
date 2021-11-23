@@ -9,7 +9,7 @@ namespace CA1_LucianoGimenez_23643
     {
         static void Main(string[] args)
         {
-            //test
+            //Test- writing the customers info in the files
             /*
                 BankAccount bankAcc1 = new BankAccount ("John", "Smith", "current", 50);
                 BankAccount bankAcc2 = new BankAccount("John", "Smith", "savings", 150);
@@ -28,9 +28,10 @@ namespace CA1_LucianoGimenez_23643
             List<Customer> CustomerList = new List<Customer>();
             List<string> CustomersFileList = new List<string>();
 
+            //Statement that looks for Customer.txt 
             if (File.Exists(path + "/Customers.txt"))
             {
-                //create customer instances and add them to customer list
+                //Create customer instances from Customer.txt, recreate their bankAccounts and add them to customer list
                 Console.WriteLine("Populating the Instances, This could take some seconds");
                 List<string> oldCustomers = new List<string> (FileManaging.ReadFile("Customers.txt"));
                 foreach(string line in oldCustomers)
@@ -232,7 +233,7 @@ namespace CA1_LucianoGimenez_23643
                                         dummyCustomer.Withdraw(CustomerList, indexOfCustomer);
                                         break;
                                     }
-                                case "4": //To go back
+                                case "9": //To go back
                                     {
                                         dummyCustomer.LogOut();
                                         break;

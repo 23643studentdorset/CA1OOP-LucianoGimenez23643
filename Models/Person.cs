@@ -16,7 +16,7 @@ namespace CA1_LucianoGimenez_23643.Models
     //abstract class person to manage withdraws, Lodges and LogOuts
     public abstract class Person : Iperson
     {
-        //Method to lodge in one account 
+        //Method to lodge to a desired account 
         public void Lodge (List<Customer> CustomerList, int index)
         {
             Console.WriteLine("Would you like to Lodge to:");
@@ -96,7 +96,7 @@ namespace CA1_LucianoGimenez_23643.Models
         }
         
         
-        //Method to withdraw from one account
+        //Method to withdraw from a desired account
         public void Withdraw(List<Customer> CustomerList, int index)
         {
             Console.WriteLine("Would you like to Withdraw from:");

@@ -22,13 +22,15 @@ namespace CA1_LucianoGimenez_23643.Models
             lastName = _lastName;
             eMail = _eMail; 
         }
-
+        
+        //Mehod that takes a bank account instance to attach it to a customer
         public void attachBankAccountToCustomer(BankAccount account)
         {
             accounts.Add(account);
             accountNumber = account.NameOfAccount();
         }
-
+        
+        //Method to set the pin of a customer to login 
         public void setPin()
         {
             char[] accountNumbertoCharArray = accountNumber.ToCharArray();
@@ -39,7 +41,7 @@ namespace CA1_LucianoGimenez_23643.Models
         }
 
 
-        //login returns index of a customer if the customer exist and -1 if the customers does not exist
+        //Login to a customer account returns index of a customer if the customer exist and -1 if the customers does not exist
         public override int LogIn(List<Customer> CustomerList)
         {
             Console.WriteLine("Hello");
@@ -67,7 +69,7 @@ namespace CA1_LucianoGimenez_23643.Models
             
         }
 
-        //Display all the transactions of one account by reading the file of that account
+        //Display all the transactions of the desired customer
         public void ShowHistory(List <Customer> CustomerList, int indexOfCustomer)
         {
             Console.WriteLine("Would you like to see the transacction history from:");
@@ -94,7 +96,7 @@ namespace CA1_LucianoGimenez_23643.Models
             FileManaging.PrintFile(fileName);
         }
 
-        //Method that returns a string with all customer public data
+        //Method that retrieve a string with all customer public data
         public string customerInfo()
         {
             string customerInfoString = accountNumber + ":" + firstName + ":" + lastName + ":" + eMail;

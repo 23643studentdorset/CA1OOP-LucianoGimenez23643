@@ -9,7 +9,6 @@ namespace CA1_LucianoGimenez_23643.Models
 {
     public class FileManaging
     {
-        
 
         //Write a file
         public static void WriteFile(string filename, List<string> fileInfo)
@@ -65,6 +64,7 @@ namespace CA1_LucianoGimenez_23643.Models
             }
             return fileInStrings;
         }
+        //Read and print a file on the screen
         public static void PrintFile(string fileName)
         {
             string path = "C:/Users/" + Environment.UserName + "/Desktop/CA_1_Files-LucianoGimenez-23643";
@@ -91,7 +91,7 @@ namespace CA1_LucianoGimenez_23643.Models
             }
         }
 
-        //method that takes the customer list and returs a string list with the info required of each customer in every element of the list
+        //Method that takes the customer list and returs a string list with the info required of each customer in every element of the list
         public static List<String> ListCustomersToString(List<Customer> ListOfCustomers)
         {
             List<string> CustomersFileList = new List<string>();

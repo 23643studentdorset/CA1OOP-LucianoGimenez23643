@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CA1_LucianoGimenez_23643.Models
 {
+    //class for the bank account instances with all the info of a bank account
     public class BankAccount
     {
         public string ownerFirstName { get; set; }
@@ -54,7 +55,7 @@ namespace CA1_LucianoGimenez_23643.Models
             return accountName;
         }
 
-        //Method that returns a list that has current balance as first element and transaction history in the others positions 
+        //Method that builds the list of string to write the account file
         public List<string> toStringList(List<string> TransacctionHistory)
         {
             List<string> stringsToWriteAccounts = new List<string>();
