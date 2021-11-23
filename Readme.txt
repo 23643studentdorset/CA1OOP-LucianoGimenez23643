@@ -18,4 +18,5 @@ does the changes and contrast if the info of one object is the same to the infor
 
 I tried to avoid repited code but I'm sure I can polish it, withdraw/lodge are to similar I could put both of them in one method with an if statement to chose between lodge/withdraw.
 I tried to manage all the accesses to accounts by account number but the customer has to enter their name also so it did not make so much sense after all
+I did not create names for variables so there is many situations where in a line I'm calling a lot of methods, and that was also confusing for me while I was programing.
 
