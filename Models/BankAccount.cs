@@ -58,7 +58,7 @@ namespace CA1_LucianoGimenez_23643.Models
         public List<string> toStringList(List<string> TransacctionHistory)
         {
             List<string> stringsToWriteAccounts = new List<string>();
-            stringsToWriteAccounts.Add("Balance: " + balance.ToString());
+            stringsToWriteAccounts.Add("Balance:" + balance.ToString());
             
             foreach (string transacction in TransacctionHistory)
             {

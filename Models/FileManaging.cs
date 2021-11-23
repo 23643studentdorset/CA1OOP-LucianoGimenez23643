@@ -16,8 +16,6 @@ namespace CA1_LucianoGimenez_23643.Models
         {
             
             string path ="C:/Users/"+ Environment.UserName + "/Desktop/CA_1_Files-LucianoGimenez-23643";
-            System.IO.Directory.CreateDirectory(path);
-
             string fileToWrite = $"{path}/{filename}";
 
 
@@ -93,7 +91,7 @@ namespace CA1_LucianoGimenez_23643.Models
             }
         }
 
-        //Returns a string list with the info required of each customer in every element of the list
+        //method that takes the customer list and returs a string list with the info required of each customer in every element of the list
         public static List<String> ListCustomersToString(List<Customer> ListOfCustomers)
         {
             List<string> CustomersFileList = new List<string>();

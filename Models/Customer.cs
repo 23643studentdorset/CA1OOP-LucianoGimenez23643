@@ -97,7 +97,7 @@ namespace CA1_LucianoGimenez_23643.Models
         //Method that returns a string with all customer public data
         public string customerInfo()
         {
-            string customerInfoString = accountNumber + " : " + firstName + " : " + lastName + " : " + eMail;
+            string customerInfoString = accountNumber + ":" + firstName + ":" + lastName + ":" + eMail;
             return customerInfoString;
         }
 

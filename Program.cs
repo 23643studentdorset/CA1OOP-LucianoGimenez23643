@@ -1,6 +1,7 @@
 ﻿using CA1_LucianoGimenez_23643.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CA1_LucianoGimenez_23643
 {
@@ -20,12 +21,56 @@ namespace CA1_LucianoGimenez_23643
                 FileManaging.WriteFile("Customers.txt",listToWriteCustomers);
                 FileManaging.WriteFile(bankAcc1.accountName + ".txt", bankAcc1.toStringList());
             */
-            
-            //Create Customer.txt and a directory in the desktop called CA1-files-LucianoGimenez-23643
-            
-            List<string> CustomersFileList = new List<string>();
-            FileManaging.WriteFile("Customers.txt", CustomersFileList);
+
+            //creates a directory in the desktop called CA1-files-LucianoGimenez-23643
+            string path = "C:/Users/" + Environment.UserName + "/Desktop/CA_1_Files-LucianoGimenez-23643";
+            System.IO.Directory.CreateDirectory(path);
             List<Customer> CustomerList = new List<Customer>();
+            List<string> CustomersFileList = new List<string>();
+
+            if (File.Exists(path + "/Customers.txt"))
+            {
+                //create customer instances and add them to customer list
+                Console.WriteLine("Populating the Instances, This could take some seconds");
+                List<string> oldCustomers = new List<string> (FileManaging.ReadFile("Customers.txt"));
+                foreach(string line in oldCustomers)
+                {
+                    
+                    string[] splitedCustomerInfo = line.Split(":");
+                    string fName = splitedCustomerInfo[1];
+                    string lName = splitedCustomerInfo[2];
+                    string eMail = splitedCustomerInfo[3];
+                    Customer OldCustomer = new Customer(fName, lName, eMail);
+                    
+                    
+                    BankAccount oldCustomerBankAccountCurrent = new BankAccount(fName, lName, "Current", 0);
+                    BankAccount oldCustomerBankAccountSavings = new BankAccount(fName, lName, "Current", 0);
+
+                    OldCustomer.attachBankAccountToCustomer(oldCustomerBankAccountCurrent);
+                    OldCustomer.attachBankAccountToCustomer(oldCustomerBankAccountSavings);
+                    OldCustomer.setPin();
+
+                    string currentFile = oldCustomerBankAccountCurrent.NameOfAccount() + "-Current.txt";
+                    string savingsFile = oldCustomerBankAccountCurrent.NameOfAccount() + "-Savings.txt";
+                    
+                    string[] currentInString = FileManaging.ReadFile(currentFile)[0].Split(":");
+                    double newCurrentBalance = Convert.ToDouble(currentInString[1]);
+                    oldCustomerBankAccountCurrent.balance = newCurrentBalance;
+
+                    string[] savingsInString = FileManaging.ReadFile(savingsFile)[0].Split(":");
+                    double newSavingsBalance = Convert.ToDouble(savingsInString[1]);
+                    oldCustomerBankAccountSavings.balance = newCurrentBalance;
+
+                    CustomerList.Add(OldCustomer);
+                }
+            }
+            else
+            {
+                //Create Empty Customer.txt
+                FileManaging.WriteFile("Customers.txt", CustomersFileList);
+            }
+            
+            
 
             Console.WriteLine("Welcome are you a customer or an employee?");
             bool flag = true;

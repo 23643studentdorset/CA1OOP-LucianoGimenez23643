@@ -37,11 +37,11 @@ namespace CA1_LucianoGimenez_23643.Models
        //Method to create a customer instance
         public Customer CreateCustomer()
         {
-            Console.WriteLine("please enter first name");
+            Console.WriteLine("Please enter first name");
             string fName = Console.ReadLine();
-            Console.WriteLine("please enter last name");
+            Console.WriteLine("Please enter last name");
             string lName = Console.ReadLine();
-            Console.WriteLine("please enter email");
+            Console.WriteLine("Please enter email");
             string eMail = Console.ReadLine();
             Customer newCustomer = new Customer (fName, lName, eMail);
             Console.WriteLine("Customer Created successfully");
