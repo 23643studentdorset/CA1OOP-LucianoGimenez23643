@@ -11,8 +11,8 @@ The main program first creates/load all the customers depending on if Customers.
 a switch to show and manage the options for the users.
 
 When I started doing the program I wanted to manage everything by using objects and classes and just load the info from customers and bank accounts from existent files,
-so I did all the program based in those objects and after everithing was working, I was manual testing the program while doing it step by step using the comandline 
-but mainly i tested the read/write files for create a customer option. I did not create a testing unit mainly because I never did it and I did not know how to aproach it. Since my methods have also inputs/outputs inside
+so I did all the program based in those objects and after everithing was working, I was doing manual test with every functionality in comandline and checking the folder
+but mainly I tested the read/write files for create a customer option. I did not create a testing unit mainly because I never did it and I did not know how to aproach it I started reading the docs in Microsoft website but I did not have to time to implement it. Since my methods have also inputs/outputs inside
 to test for example lodge I have to put all the data on the console, I think in order to have a testing module I would have to separate the output/input from the method that
 does the changes and contrast if the info of one object is the same to the information that should have.
 
